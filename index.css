@@ -1,0 +1,85 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-surface-1: hsl(0 0 5);
+  --color-surface-2: hsl(0 0 15);
+  --color-surface-3: hsl(0 0 25);
+
+  --color-text: hsl(0 0 90);
+  --color-text-muted: hsl(0 0 75);
+
+  --color-highlight: hsl(220 100 65);
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--color-surface-1);
+  color: var(--color-text);
+}
+
+.container {
+  margin-inline: auto;
+  max-inline-size: 640px;
+  padding: 1rem;
+}
+
+.flow > * + * {
+  margin-block-start: 1rem;
+}
+
+.tablist {
+  & {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: auto;
+  }
+
+  > .tab {
+    position: relative;
+    font: unset;
+    color: unset;
+    background-color: var(--color-surface-2);
+    padding: 0.5rem 1rem;
+    border: none;
+  }
+  > .tab:focus-visible {
+    outline: none;
+  }
+  > .tab:focus-visible > .label {
+    outline: 2px solid var(--color-highlight);
+    outline-offset: 2px;
+  }
+  > .tab[aria-selected='true'] {
+    background-color: var(--color-surface-3);
+  }
+  > .tab[aria-selected='true']::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    block-size: 2px;
+    background-color: var(--color-highlight);
+  }
+}
+
+.tabpanel {
+  & {
+    background-color: var(--color-surface-3);
+    padding: 1rem;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-highlight);
+    outline-offset: 2px;
+  }
+}
